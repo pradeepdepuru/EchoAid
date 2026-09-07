@@ -738,174 +738,174 @@ export default function Home() {
                   transition: "transform 0.25s ease, border-color 0.25s ease",
                 }}
               >
-              <AidCard {...card} />
-              {/* Dynamic Boost Tier Controls */}
-              <div style={{ display: "flex", flexDirection: "column", gap: "10px", marginTop: "auto" }}>
-                {/* Fixed Tier Buttons */}
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "8px" }}>
-                  <button
-                    id={`boost-05-${card.id}`}
-                    type="button"
-                    onClick={() => handleBoost(card.beneficiaryWallet, 0.5, card.id)}
-                    disabled={isBoosting}
-                    style={{
-                      padding: "10px 12px",
-                      borderRadius: "10px",
-                      border: "1px solid rgba(255, 255, 255, 0.12)",
-                      background: "rgba(255, 255, 255, 0.05)",
-                      color: "white",
-                      fontSize: "0.8rem",
-                      fontWeight: 600,
-                      cursor: isBoosting ? "not-allowed" : "pointer",
-                      transition: "all 0.2s ease",
-                    }}
-                    onMouseEnter={(e) => {
-                      if (!isBoosting) {
-                        (e.currentTarget as HTMLElement).style.background = "rgba(124, 58, 237, 0.25)";
-                        (e.currentTarget as HTMLElement).style.borderColor = "#a78bfa";
-                      }
-                    }}
-                    onMouseLeave={(e) => {
-                      (e.currentTarget as HTMLElement).style.background = "rgba(255, 255, 255, 0.05)";
-                      (e.currentTarget as HTMLElement).style.borderColor = "rgba(255, 255, 255, 0.12)";
-                    }}
-                  >
-                    🚀 Boost 0.5 SOL
-                  </button>
-
-                  <button
-                    id={`boost-10-${card.id}`}
-                    type="button"
-                    onClick={() => handleBoost(card.beneficiaryWallet, 1.0, card.id)}
-                    disabled={isBoosting}
-                    style={{
-                      padding: "10px 12px",
-                      borderRadius: "10px",
-                      border: "1px solid rgba(255, 255, 255, 0.12)",
-                      background: "rgba(255, 255, 255, 0.05)",
-                      color: "white",
-                      fontSize: "0.8rem",
-                      fontWeight: 600,
-                      cursor: isBoosting ? "not-allowed" : "pointer",
-                      transition: "all 0.2s ease",
-                    }}
-                    onMouseEnter={(e) => {
-                      if (!isBoosting) {
-                        (e.currentTarget as HTMLElement).style.background = "rgba(6, 182, 212, 0.25)";
-                        (e.currentTarget as HTMLElement).style.borderColor = "#22d3ee";
-                      }
-                    }}
-                    onMouseLeave={(e) => {
-                      (e.currentTarget as HTMLElement).style.background = "rgba(255, 255, 255, 0.05)";
-                      (e.currentTarget as HTMLElement).style.borderColor = "rgba(255, 255, 255, 0.12)";
-                    }}
-                  >
-                    🔥 Boost 1.0 SOL
-                  </button>
-                </div>
-
-                {/* Inline Custom Amount Input + Send Button */}
-                <div style={{ display: "flex", gap: "8px" }}>
-                  <input
-                    id={`custom-amount-${card.id}`}
-                    type="number"
-                    step="0.05"
-                    min="0.01"
-                    placeholder="Custom SOL (e.g. 0.25)"
-                    value={customAmounts[card.id] || ""}
-                    onChange={(e) =>
-                      setCustomAmounts((prev) => ({
-                        ...prev,
-                        [card.id]: e.target.value,
-                      }))
-                    }
-                    disabled={isBoosting}
-                    style={{
-                      flex: 1,
-                      padding: "8px 12px",
-                      borderRadius: "10px",
-                      background: "rgba(10, 15, 30, 0.7)",
-                      border: "1px solid rgba(255, 255, 255, 0.12)",
-                      color: "var(--text-primary)",
-                      fontSize: "0.8rem",
-                      outline: "none",
-                    }}
-                    onFocus={(e) => {
-                      e.currentTarget.style.borderColor = "#a78bfa";
-                    }}
-                    onBlur={(e) => {
-                      e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.12)";
-                    }}
-                  />
-                  <button
-                    id={`custom-send-btn-${card.id}`}
-                    type="button"
-                    onClick={() => {
-                      const val = parseFloat(customAmounts[card.id] || "0");
-                      handleBoost(card.beneficiaryWallet, val, card.id);
-                    }}
-                    disabled={isBoosting || !customAmounts[card.id]}
-                    style={{
-                      padding: "8px 16px",
-                      borderRadius: "10px",
-                      border: "none",
-                      background: `linear-gradient(135deg, ${card.accentColor}, ${card.accentColor}cc)`,
-                      color: "white",
-                      fontSize: "0.8rem",
-                      fontWeight: 600,
-                      cursor: isBoosting || !customAmounts[card.id] ? "not-allowed" : "pointer",
-                      opacity: isBoosting || !customAmounts[card.id] ? 0.5 : 1,
-                      transition: "all 0.2s ease",
-                    }}
-                  >
-                    Send
-                  </button>
-                </div>
-
-                {/* Live Transaction Status & Explorer Confirmation */}
-                {status?.processing && (
-                  <div
-                    style={{
-                      fontSize: "11px",
-                      color: "#a78bfa",
-                      textAlign: "center",
-                      animation: "pulseGlow 1.2s ease-in-out infinite",
-                    }}
-                  >
-                    ⚡ Confirming transaction on Devnet…
-                  </div>
-                )}
-                {status?.signature && (
-                  <div style={{ textAlign: "center", marginTop: "4px" }}>
-                    <span style={{ fontSize: "12px", color: "#34d399", fontWeight: 600, display: "block" }}>
-                      ✓ Donation Confirmed!
-                    </span>
-                    <a
-                      href={solscanUrl(status.signature)}
-                      target="_blank"
-                      rel="noreferrer"
+                <AidCard {...card} />
+                {/* Dynamic Boost Tier Controls */}
+                <div style={{ display: "flex", flexDirection: "column", gap: "10px", marginTop: "auto" }}>
+                  {/* Fixed Tier Buttons */}
+                  <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "8px" }}>
+                    <button
+                      id={`boost-05-${card.id}`}
+                      type="button"
+                      onClick={() => handleBoost(card.beneficiaryWallet, 0.5, card.id)}
+                      disabled={isBoosting}
                       style={{
-                        fontSize: "11px",
-                        color: "#38bdf8",
-                        textDecoration: "underline",
-                        fontFamily: "monospace",
-                        display: "inline-block",
-                        marginTop: "2px",
+                        padding: "10px 12px",
+                        borderRadius: "10px",
+                        border: "1px solid rgba(255, 255, 255, 0.12)",
+                        background: "rgba(255, 255, 255, 0.05)",
+                        color: "white",
+                        fontSize: "0.8rem",
+                        fontWeight: 600,
+                        cursor: isBoosting ? "not-allowed" : "pointer",
+                        transition: "all 0.2s ease",
+                      }}
+                      onMouseEnter={(e) => {
+                        if (!isBoosting) {
+                          (e.currentTarget as HTMLElement).style.background = "rgba(124, 58, 237, 0.25)";
+                          (e.currentTarget as HTMLElement).style.borderColor = "#a78bfa";
+                        }
+                      }}
+                      onMouseLeave={(e) => {
+                        (e.currentTarget as HTMLElement).style.background = "rgba(255, 255, 255, 0.05)";
+                        (e.currentTarget as HTMLElement).style.borderColor = "rgba(255, 255, 255, 0.12)";
                       }}
                     >
-                      View Verified Proof on Solscan
-                    </a>
+                      🚀 Boost 0.5 SOL
+                    </button>
+
+                    <button
+                      id={`boost-10-${card.id}`}
+                      type="button"
+                      onClick={() => handleBoost(card.beneficiaryWallet, 1.0, card.id)}
+                      disabled={isBoosting}
+                      style={{
+                        padding: "10px 12px",
+                        borderRadius: "10px",
+                        border: "1px solid rgba(255, 255, 255, 0.12)",
+                        background: "rgba(255, 255, 255, 0.05)",
+                        color: "white",
+                        fontSize: "0.8rem",
+                        fontWeight: 600,
+                        cursor: isBoosting ? "not-allowed" : "pointer",
+                        transition: "all 0.2s ease",
+                      }}
+                      onMouseEnter={(e) => {
+                        if (!isBoosting) {
+                          (e.currentTarget as HTMLElement).style.background = "rgba(6, 182, 212, 0.25)";
+                          (e.currentTarget as HTMLElement).style.borderColor = "#22d3ee";
+                        }
+                      }}
+                      onMouseLeave={(e) => {
+                        (e.currentTarget as HTMLElement).style.background = "rgba(255, 255, 255, 0.05)";
+                        (e.currentTarget as HTMLElement).style.borderColor = "rgba(255, 255, 255, 0.12)";
+                      }}
+                    >
+                      🔥 Boost 1.0 SOL
+                    </button>
                   </div>
-                )}
-                {status?.error && (
-                  <div style={{ fontSize: "11px", color: "#f87171", textAlign: "center" }}>
-                    ⚠️ {status.error}
+
+                  {/* Inline Custom Amount Input + Send Button */}
+                  <div style={{ display: "flex", gap: "8px" }}>
+                    <input
+                      id={`custom-amount-${card.id}`}
+                      type="number"
+                      step="0.05"
+                      min="0.01"
+                      placeholder="Custom SOL (e.g. 0.25)"
+                      value={customAmounts[card.id] || ""}
+                      onChange={(e) =>
+                        setCustomAmounts((prev) => ({
+                          ...prev,
+                          [card.id]: e.target.value,
+                        }))
+                      }
+                      disabled={isBoosting}
+                      style={{
+                        flex: 1,
+                        padding: "8px 12px",
+                        borderRadius: "10px",
+                        background: "rgba(10, 15, 30, 0.7)",
+                        border: "1px solid rgba(255, 255, 255, 0.12)",
+                        color: "var(--text-primary)",
+                        fontSize: "0.8rem",
+                        outline: "none",
+                      }}
+                      onFocus={(e) => {
+                        e.currentTarget.style.borderColor = "#a78bfa";
+                      }}
+                      onBlur={(e) => {
+                        e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.12)";
+                      }}
+                    />
+                    <button
+                      id={`custom-send-btn-${card.id}`}
+                      type="button"
+                      onClick={() => {
+                        const val = parseFloat(customAmounts[card.id] || "0");
+                        handleBoost(card.beneficiaryWallet, val, card.id);
+                      }}
+                      disabled={isBoosting || !customAmounts[card.id]}
+                      style={{
+                        padding: "8px 16px",
+                        borderRadius: "10px",
+                        border: "none",
+                        background: `linear-gradient(135deg, ${card.accentColor}, ${card.accentColor}cc)`,
+                        color: "white",
+                        fontSize: "0.8rem",
+                        fontWeight: 600,
+                        cursor: isBoosting || !customAmounts[card.id] ? "not-allowed" : "pointer",
+                        opacity: isBoosting || !customAmounts[card.id] ? 0.5 : 1,
+                        transition: "all 0.2s ease",
+                      }}
+                    >
+                      Send
+                    </button>
                   </div>
-                )}
+
+                  {/* Live Transaction Status & Explorer Confirmation */}
+                  {status?.processing && (
+                    <div
+                      style={{
+                        fontSize: "11px",
+                        color: "#a78bfa",
+                        textAlign: "center",
+                        animation: "pulseGlow 1.2s ease-in-out infinite",
+                      }}
+                    >
+                      ⚡ Confirming transaction on Devnet…
+                    </div>
+                  )}
+                  {status?.signature && (
+                    <div style={{ textAlign: "center", marginTop: "4px" }}>
+                      <span style={{ fontSize: "12px", color: "#34d399", fontWeight: 600, display: "block" }}>
+                        ✓ Donation Confirmed!
+                      </span>
+                      <a
+                        href={solscanUrl(status.signature)}
+                        target="_blank"
+                        rel="noreferrer"
+                        style={{
+                          fontSize: "11px",
+                          color: "#38bdf8",
+                          textDecoration: "underline",
+                          fontFamily: "monospace",
+                          display: "inline-block",
+                          marginTop: "2px",
+                        }}
+                      >
+                        View Verified Proof on Solscan
+                      </a>
+                    </div>
+                  )}
+                  {status?.error && (
+                    <div style={{ fontSize: "11px", color: "#f87171", textAlign: "center" }}>
+                      ⚠️ {status.error}
+                    </div>
+                  )}
+                </div>
               </div>
-            </div>
-          );
-        })}
+            );
+          })}
         </section>
       </div>
 
@@ -922,7 +922,7 @@ export default function Home() {
           fontSize: "0.75rem",
         }}
       >
-        Built at a 24-hour hackathon · Solana Devnet · ElevenLabs TTS ·{" "}
+        Built as part of DEV Weekend Challenge · Solana Devnet · ElevenLabs TTS ·{" "}
         <span style={{ color: "#7c3aed" }}>EchoAid</span>
       </footer>
 
